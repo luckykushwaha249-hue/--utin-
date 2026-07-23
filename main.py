@@ -1,7 +1,6 @@
 """
 ऊटिन – Camel Bluetooth Chat
-Camel ASCII art + full chat functionality.
-App icon: add icon.png in source folder (see buildozer.spec).
+Uses RFCOMM (SPP UUID). Camel ASCII header + full chat UI.
 """
 
 import threading
@@ -15,13 +14,11 @@ from kivy.uix.spinner import Spinner
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.logger import Logger
-from kivy.graphics import Color, Rectangle
 
-# ---------- PyJNIus (Android Bluetooth) ----------
+# ---------- Android Bluetooth via PyJNIus ----------
 from jnius import autoclass
 from android.permissions import request_permissions, Permission
 
-# Java classes
 BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
 BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
@@ -34,7 +31,7 @@ def toast(msg):
     Toast.makeText(PythonActivity.mActivity, msg, Toast.LENGTH_SHORT).show()
 
 # ---------- Camel ASCII Art ----------
-CAMEL_ART = """
+CAMEL = """
    🐫
   /    \\
  /  🏜  \\
@@ -42,7 +39,6 @@ CAMEL_ART = """
  \\    /
   \\__/
 """
-# You can replace with a more detailed ASCII camel or a base64 image.
 
 # ---------- Bluetooth Manager ----------
 class BluetoothManager:
@@ -178,7 +174,7 @@ class BluetoothManager:
         paired = self.adapter.getBondedDevices()
         return [(device.getName(), device.getAddress()) for device in paired]
 
-# ---------- Kivy UI with Camel ----------
+# ---------- Kivy UI ----------
 class ChatScreen(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(orientation='vertical', **kwargs)
@@ -189,12 +185,8 @@ class ChatScreen(BoxLayout):
 
         # ---- Camel Header ----
         header = BoxLayout(size_hint_y=0.15, orientation='horizontal')
-        # Camel ASCII label
-        camel_label = Label(text=CAMEL_ART, font_size='30sp', halign='center', valign='middle')
-        header.add_widget(camel_label)
-        # App name
-        name_label = Label(text="ऊटिन", font_size='24sp', bold=True, halign='center', valign='middle')
-        header.add_widget(name_label)
+        header.add_widget(Label(text=CAMEL, font_size='30sp', halign='center', valign='middle'))
+        header.add_widget(Label(text="ऊटिन", font_size='24sp', bold=True, halign='center', valign='middle'))
         self.add_widget(header)
 
         # Status
@@ -241,7 +233,7 @@ class ChatScreen(BoxLayout):
         spinner_box.add_widget(self.device_spinner)
         self.add_widget(spinner_box)
 
-        # Request permissions and load devices
+        # Permissions + load devices
         self.request_permissions()
         self.refresh_devices()
 
