@@ -16,11 +16,12 @@ requirements = python3==3.11.8,kivy,pyjnius
 orientation = portrait
 fullscreen = 0
 
-# Icon line removed for now — you haven't uploaded icon.png yet.
-# Add it back only after icon.png actually exists in the repo root:
-# android.icon = icon.png
+# Camel logo (place a 512x512 icon.png in source folder)
+android.icon = icon.png
 
 android.permissions = BLUETOOTH,BLUETOOTH_ADMIN,BLUETOOTH_SCAN,BLUETOOTH_ADVERTISE,BLUETOOTH_CONNECT,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION
+
+p4a.branch = 2026.5.9
 
 android.api = 33
 android.minapi = 23
