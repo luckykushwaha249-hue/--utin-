@@ -17,13 +17,10 @@ orientation = portrait
 fullscreen = 0
 
 # ----- App Icon (camel logo) -----
-# Place a 512x512 PNG named icon.png in the source folder.
 android.icon = icon.png
 
 # Permissions
 android.permissions = BLUETOOTH,BLUETOOTH_ADMIN,BLUETOOTH_SCAN,BLUETOOTH_ADVERTISE,BLUETOOTH_CONNECT,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION
-
-p4a.branch = 2026.5.9
 
 android.api = 33
 android.minapi = 23
