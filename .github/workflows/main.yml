@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    timeout-minutes: 40
 
     steps:
       - uses: actions/checkout@v4
@@ -31,14 +31,7 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython
 
-      - name: Setup Android SDK & NDK (pre‑cached)
-        uses: android-actions/setup-android@v3
-        with:
-          api-level: 33
-          build-tools: 33.0.2
-          ndk: 25.1.8937393
-          cmake: 3.22.1
-
+      # Cache ~/.buildozer – after first run, SDK/NDK will be cached
       - name: Cache Buildozer
         uses: actions/cache@v4
         with:
