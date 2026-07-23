@@ -1,10 +1,10 @@
 # ऊटिन – Camel Bluetooth Chat
 
 A simple Bluetooth chat app for two Android devices.  
-Features a **camel logo** and a **camel interface** (ASCII art) inside the app.
+Features a camel logo (add `icon.png`) and a camel ASCII interface.
 
 ## Build
-- Add a **camel icon** (512x512 PNG) as `icon.png` in the source folder.
+- Add a camel icon (512x512 PNG) as `icon.png` (optional, default is used if missing).
 - Use GitHub Actions (fast build) or local Buildozer.
 
 ## Usage
@@ -14,4 +14,8 @@ Features a **camel logo** and a **camel interface** (ASCII art) inside the app.
 4. Send messages.
 
 ## Permissions
-All Bluetooth and location permissions are requested at runtime.
+All required Bluetooth and location permissions are requested at runtime.
+
+## Build locally
+```bash
+buildozer android debug deploy run
