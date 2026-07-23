@@ -19,10 +19,10 @@ fullscreen = 0
 # Camel logo (place 512x512 icon.png)
 android.icon = icon.png
 
-android.permissions = BLUETOOTH,BLUETOOTH_ADMIN,BLUETOOTH_SCAN,BLUETOOTH_ADVERTISE,BLUETOOTH_CONNECT,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION
+# Explicitly set build tools version (prevents default 37.0.0)
+android.build_tools = 33.0.2
 
-# REMOVE THIS LINE – or set to 'master':
-# p4a.branch = 2026.5.9
+android.permissions = BLUETOOTH,BLUETOOTH_ADMIN,BLUETOOTH_SCAN,BLUETOOTH_ADVERTISE,BLUETOOTH_CONNECT,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION
 
 android.api = 33
 android.minapi = 23
