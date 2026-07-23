@@ -7,11 +7,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install system dependencies
         run: |
@@ -22,7 +22,7 @@ jobs:
             libffi-dev libssl-dev
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11.8'
 
@@ -31,7 +31,7 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython
 
-      - name: Setup Android SDK & NDK (pre‑cached)
+      - name: Setup Android SDK & NDK (pre-cached)
         uses: android-actions/setup-android@v3
         with:
           api-level: 33
@@ -40,7 +40,7 @@ jobs:
           cmake: 3.22.1
 
       - name: Cache Buildozer
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.buildozer
           key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
@@ -51,7 +51,7 @@ jobs:
         run: buildozer -v android debug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ootin-apk
           path: bin/*.apk
